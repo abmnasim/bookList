@@ -178,6 +178,7 @@ function addNewBook(e){
         bookPrice.focus();
     }else{
         let book = new Book(bisbn, bname, bwriter, bprice);
+        console.log(UI.checkISBN(book.isbn));
         if(UI.checkISBN(book.isbn) === true){
             UI.AddToBookList(book);
             Store.addBook(book);
