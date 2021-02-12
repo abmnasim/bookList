@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+        <title>Hello, world!</title>
+  </head>
+  <body>
+        
+        <div class="container"><!-- Main Container -->
+            <div class="row">
+                <div class="col-12 text-center mt-5 mb-5">
+                    <h1>Book List App</h1>
+                </div>
+                <div class="col-md-4 newBook">
+                    <h3>Add New Book</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="isbn">#ISBN</label>
+                            <input type="text" id="isbn" class="form-control" placeholder="ISBN">
+                            <div id="isbnFeedback" class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bookTitle">Book Title</label>
+                            <input type="text" id="bookTitle" class="form-control" placeholder="Book Title">
+                            <div id="bookTitleFeedback" class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bookAuthor">Book Author</label>
+                            <input type="text" id="bookAuthor" class="form-control" placeholder="Book Author">
+                            <div id="bookAuthorFeedback" class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bookPrice">Book Price</label>
+                            <input type="number" id="bookPrice" class="form-control" placeholder="Book Price">
+                            <div id="bookPriceFeedback" class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="d-flex justify-content-end">
+                            <button type="button" id="addNewBook" class="btn btn-primary mt-3">Add New Book</button>
+                        </div>
+                        
+                    </form>
+                </div>
+                <div class="col-md-8">
+                    <h3>All Book Details</h3>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#ISBN</th>
+                                <th>Book Name</th>
+                                <th>Writer</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookList"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Optional JavaScript; choose one of the two! -->
+
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+        <script src="./script.js"></script>
+    
+  </body>
+</html>
