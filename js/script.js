@@ -70,6 +70,14 @@ class UI {
     static clearFields(){
         isbn.value = bookTitle.value = bookAuthor.value = bookPrice.value = bisbn = bname = bwriter = bprice = '';
     }
+
+    static RemoveBookFromBookList(e){
+        if(e.hasAttribute('href')){
+            e.parentElement.parentElement.remove();
+            Store.RemoveBookByISBN(e.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.textContent.trim());
+            UI.Notice('Book successfully removed!', 'success');
+        }
+    }
 }
 
 
@@ -100,6 +108,16 @@ class Store {
             UI.AddToBookList(book);
         });
     }
+
+    static RemoveBookByISBN(isbn){
+        let books = Store.getBook();
+        books.forEach((book, index) => {
+            if(book.isbn == isbn){
+                books.splice(index, 1);
+            }
+        });
+        localStorage.setItem('books', JSON.stringify(books));
+    }
 }
 
 
@@ -109,6 +127,7 @@ bookTitle.addEventListener('keyup', nameCheck);
 bookAuthor.addEventListener('keyup', writerCheck);
 bookPrice.addEventListener('keyup', priceCheck);
 bookAdd.addEventListener('click', addNewBook);
+bookList.addEventListener('click', removeBook);
 document.addEventListener('DOMContentLoaded', Store.displayBookList());
 
 var bisbn = bname = bwriter = bprice = '';
@@ -203,8 +222,14 @@ function addNewBook(e){
             UI.clearFields();
             UI.Notice('New book successfully added!','success');
         }else{
-            UI.Notice('ISBN already have!','error');
+            UI.Notice('This book already registered!','error');
         }
         
     }
+}
+
+// Remove Book From Book List
+function removeBook(e) {
+    e.preventDefault();
+    UI.RemoveBookFromBookList(e.target);
 }
