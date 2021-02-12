@@ -41,12 +41,30 @@ class UI {
         let books = Store.getBook();
         let data = false;
         books.forEach(book => {
-            console.log(ISBN == book.isbn);
             if(ISBN == book.isbn){
                 data = true;
             }
         });
         return data;
+    }
+
+    static Notice(msg, status){
+        const div = document.createElement('div');
+        div.className = `alert ${status}`;
+        div.appendChild(document.createTextNode(msg));
+
+        const noticeLoc = document.querySelector('#notice');
+        noticeLoc.append(div);
+        setTimeout(() => {
+            UI.clearAlert();
+        }, 3000);
+    }
+
+    static clearAlert(){
+        const currentAlert = document.querySelector(".alert");
+        if(currentAlert){
+            currentAlert.remove();
+        }
     }
 
     static clearFields(){
@@ -96,18 +114,21 @@ document.addEventListener('DOMContentLoaded', Store.displayBookList());
 var bisbn = bname = bwriter = bprice = '';
 let reName = /^[a-zA-Z ]+$/;
 
+// ISBN Checking Function
 function isbnCheck(e) {
     let reSN = /^[a-zA-Z0-9]+$/;
     let data = e.target.value.trim();
     if(reSN.test(data)){
         isbn.classList.remove('is-invalid');
         bookISBNFB.innerHTML = '';
+        bisbn = data;
     }else{
         isbn.classList.add('is-invalid');
         bookISBNFB.innerHTML = 'Please provide a valid ISBN';
     }
 }
 
+// Book Name Check Function
 function nameCheck(e){
     let data = e.target.value.trim();
     if(reName.test(data)){
@@ -125,6 +146,7 @@ function nameCheck(e){
     }
 }
 
+// Book Author Checking Function
 function writerCheck(e){
     let data = e.target.value.trim();
     if(reName.test(data)){
@@ -142,6 +164,7 @@ function writerCheck(e){
     }
 }
 
+// Book Price Checking Function
 function priceCheck(e){
     if(e.target.value.trim() != ''){
         bookPrice.classList.remove('is-invalid');
@@ -153,6 +176,7 @@ function priceCheck(e){
     }
 }
 
+// Add New Book Function
 function addNewBook(e){
     e.preventDefault();
     if(bisbn == ''){
@@ -177,6 +201,9 @@ function addNewBook(e){
             UI.AddToBookList(book);
             Store.addBook(book);
             UI.clearFields();
+            UI.Notice('New book successfully added!','success');
+        }else{
+            UI.Notice('ISBN already have!','error');
         }
         
     }
