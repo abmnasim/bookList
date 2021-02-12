@@ -180,7 +180,7 @@ function addNewBook(e){
     }else{
         let book = new Book(bisbn, bname, bwriter, bprice);
         console.log(UI.checkISBN(book.isbn));
-        if(UI.checkISBN(book.isbn) === true){
+        if(UI.checkISBN(book.isbn) === false){
             UI.AddToBookList(book);
             Store.addBook(book);
             UI.clearFields();
