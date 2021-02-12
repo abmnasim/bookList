@@ -102,12 +102,6 @@ function isbnCheck(e) {
     if(reSN.test(data)){
         isbn.classList.remove('is-invalid');
         bookISBNFB.innerHTML = '';
-        if(data.length > 3){
-            bisbn = data;
-        }else{
-            isbn.classList.add('is-invalid');
-            bookISBNFB.innerHTML = 'Please provide a valid ISBN';
-        }
     }else{
         isbn.classList.add('is-invalid');
         bookISBNFB.innerHTML = 'Please provide a valid ISBN';
@@ -179,7 +173,6 @@ function addNewBook(e){
         bookPrice.focus();
     }else{
         let book = new Book(bisbn, bname, bwriter, bprice);
-        console.log(UI.checkISBN(book.isbn));
         if(UI.checkISBN(book.isbn) === false){
             UI.AddToBookList(book);
             Store.addBook(book);
