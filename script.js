@@ -41,7 +41,8 @@ class UI {
         let books = Store.getBook();
         let data = false;
         books.forEach(book => {
-            if(ISBN.localeCompare(book.isbn) == 1){
+            console.log(ISBN == book.isbn);
+            if(ISBN == book.isbn){
                 data = true;
             }
         });
@@ -178,7 +179,7 @@ function addNewBook(e){
         bookPrice.focus();
     }else{
         let book = new Book(bisbn, bname, bwriter, bprice);
-        if(UI.checkISBN(book.isbn) === true){
+        if(UI.checkISBN(book.isbn) != true){
             UI.AddToBookList(book);
             Store.addBook(book);
             UI.clearFields();
